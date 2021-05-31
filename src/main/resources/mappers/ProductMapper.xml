@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.ProductMapper">
+    <resultMap id="productMapper" type="Product">
+        <id column="pid" property="pid" />
+        <id column="item_record_no" property="itemRecordNo"/>
+        <id column="item_no" property="itemNo"/>
+        <id column="item_name" property="itemName"/>
+        <id column="stock_id" property="stockId"/>
+        <id column="price" property="price"/>
+        <id column="discount" property="discount"/>
+        <id column="gmodel" property="gmodel"/>
+        <id column="country" property="country"/>
+        <id column="unit" property="unit" />
+        <id column="pdesc" property="pdesc"/>
+        <id column="pimages" property="pimages"/>
+    </resultMap>
+    <!--查找所有产品-->
+    <select id="findAll" resultType="com.example.demo.entity.Product" resultMap="productMapper">
+        select * from product
+    </select>
+    <!--根据产品ID查找产品-->
+    <select id="findByUserName" resultType="com.example.demo.entity.Product">
+        select * from product where pid = #{pid}
+    </select>
+</mapper>

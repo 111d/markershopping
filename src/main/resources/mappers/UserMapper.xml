@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper">
+    <!--查找所有用户-->
+    <select id="findAll" resultType="com.example.demo.entity.User">
+        select * from user_information
+    </select>
+    <!--根据用户名查找用户-->
+    <select id="findByUserName" resultType="com.example.demo.entity.User">
+        select * from user_information where username=#{userName,jdbcType=VARCHAR}
+    </select>
+    <!--登录用户-->
+    <select id="loginUser" resultType="com.example.demo.entity.User">
+        select * from user_information where username=#{username} and password = #{password}
+    </select>
+    <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into user_information('username','password','name','type','idNumber','email','telephone')
+        values
+            (
+            #{user.userName,jdbcType=VARCHAR},
+            #{user.password,jdbcType=VARCHAR},
+            #{user.name,jdbcType=VARCHAR},
+            #{user.type,jdbcType=VARCHAR},
+            #{user.idNumber,jdbcType=VARCHAR},
+            #{user.email,jdbcType=VARCHAR},
+            #{user.telephone,jdbcType=INTEGER}
+            )
+    </insert>
+    <!--注册用户-->
+    <insert id="registerUser" parameterType="com.example.demo.entity.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+<!--        <selectKey keyProperty="id" resultType="java.lang.Integer"-->
+<!--                   order="BEFORE">-->
+<!--            select max(id)+1 as id from user_information-->
+<!--        </selectKey>-->
+        insert into `marker`.`user_information`(`username`,`password`,`name`,`type`,`idNumber`,`email`,`telephone`)
+<!--        <foreach collection="list" item="item" index="index" separator=",">-->
+        values
+               <foreach collection="list" item="user" separator=",">
+                   (
+                        #{user.userName,jdbcType=VARCHAR},
+                        #{user.password,jdbcType=VARCHAR},
+                        #{user.name,jdbcType=VARCHAR},
+                        #{user.type,jdbcType=VARCHAR},
+                        #{user.idNumber,jdbcType=VARCHAR},
+                        #{user.email,jdbcType=VARCHAR},
+                        #{user.telephone,jdbcType=INTEGER}
+                    )
+               </foreach>
+<!--        </foreach>-->
+<!--        insert into user_information-->
+<!--        <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--            <if test="id != null">-->
+<!--                user.id,-->
+<!--            </if>-->
+<!--            <if test="username != null">-->
+<!--                user.username,-->
+<!--            </if>-->
+<!--            <if test="password != null">-->
+<!--                user.password,-->
+<!--            </if>-->
+<!--            <if test="name != null">-->
+<!--                user.name,-->
+<!--            </if>-->
+<!--            <if test="type != null">-->
+<!--                user.type,-->
+<!--            </if>-->
+<!--            <if test="idNumber != null">-->
+<!--                user.idNumber,-->
+<!--            </if>-->
+<!--            <if test="email != null">-->
+<!--                user.email,-->
+<!--            </if>-->
+<!--            <if test="telephone != null">-->
+<!--                user.telephone,-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--        <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--            <if test="id != null">-->
+<!--                #{id,jdbcType=INTEGER},-->
+<!--            </if>-->
+<!--            <if test="username != null">-->
+<!--                #{username,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="password != null">-->
+<!--                #{password,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="name != null">-->
+<!--                #{name,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="type != null">-->
+<!--                #{type,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="idNumber != null">-->
+<!--                #{idNumber,jdbcType=INTEGER},-->
+<!--            </if>-->
+<!--            <if test="email != null">-->
+<!--                #{email,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="telephone != null">-->
+<!--                #{telephone,jdbcType=INTEGER},-->
+<!--            </if>-->
+<!--        </trim>-->
+    </insert>
+
+</mapper>
