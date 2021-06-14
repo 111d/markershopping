@@ -42,7 +42,7 @@ public class UserTest {
         user.setType("身份证");
         user.setIdNumber("1234567899");
         user.setEmail("1234@qq.com");
-        user.setTelephone(15263489);
+        user.setTelephone("15263489");
         List<User> userList =new ArrayList<>();
         userList.add(user);
 //        userService.registerUser(user);

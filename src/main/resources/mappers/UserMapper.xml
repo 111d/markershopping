@@ -24,7 +24,7 @@
             #{user.type,jdbcType=VARCHAR},
             #{user.idNumber,jdbcType=VARCHAR},
             #{user.email,jdbcType=VARCHAR},
-            #{user.telephone,jdbcType=INTEGER}
+            #{user.telephone,jdbcType=VARCHAR}
             )
     </insert>
     <!--注册用户-->
@@ -44,7 +44,7 @@
                         #{user.type,jdbcType=VARCHAR},
                         #{user.idNumber,jdbcType=VARCHAR},
                         #{user.email,jdbcType=VARCHAR},
-                        #{user.telephone,jdbcType=INTEGER}
+                        #{user.telephone,jdbcType=VARCHAR}
                     )
                </foreach>
 <!--        </foreach>-->

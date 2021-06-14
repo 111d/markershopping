@@ -33,12 +33,12 @@ public class LoginController {
         String type = request.getParameter("type");
         String idNumber = request.getParameter("idNumber");
         String email = request.getParameter("email");
-        Integer telephone = Integer.valueOf(request.getParameter("telephone"));
+        String telephone = request.getParameter("telephone");
         User username1 = userService.findByUserName(username);
         User user1 = new User();
         IDCard idCard = new IDCard();
         int a = 0 ;//返回给前端的值
-        if (username == username1.getUserName()) {//判断前端传过来的用户名是否存在与数据库一致
+        if (username1 == null) {//判断前端传过来的用户名是否存在与数据库一致
             if(idCard.Verify(idNumber) == true) {//身份证号码校验
                 user1.setUserName(username);
                 user1.setPassword(password);

@@ -6,7 +6,7 @@ public class User {
     private String userName;
     private String password;
     private String name;
-    private Integer telephone;
+    private String telephone;
     private String type;//证件类型
     private String idNumber;
     private String email;
@@ -27,11 +27,11 @@ public class User {
         this.name = name;
     }
 
-    public Integer getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(Integer telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
