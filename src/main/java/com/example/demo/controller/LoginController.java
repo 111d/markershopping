@@ -19,7 +19,6 @@ public class LoginController {
 
     /**
      * 注册
-     * @param request
      * @return 反馈信息
      */
     @PostMapping("/register")
@@ -35,9 +34,9 @@ public class LoginController {
         User username1 = userService.findByUserName(username);
         User user1 = new User();
         IDCard idCard = new IDCard();
-        int a = 0 ;//返回给前端的值
+        int a;//返回给前端的值
         if (username1 == null) {//判断前端传过来的用户名是否存在与数据库一致
-            if(idCard.Verify(idNumber) == true) {//身份证号码校验
+            if(idCard.Verify(idNumber)) {//身份证号码校验
                 user1.setUserName(username);
                 user1.setPassword(password);
                 user1.setName(name);
@@ -45,14 +44,12 @@ public class LoginController {
                 user1.setIdNumber(idNumber);
                 user1.setEmail(email);
                 user1.setTelephone(telephone);
-                if (user1 != null) {
-                    userService.registerUser(user1);
-                    a = 1;//注册成功
-                }
+                userService.registerUser(user1);
+                a = 1;//注册成功
             } else {
                 a = -1;//注册失败
             }
-        } else if(username1 != null){
+        } else{
             a = -2;//用户名存在
         }
         return a;
@@ -61,7 +58,6 @@ public class LoginController {
 
     /**
      * 登录
-     * @param request
      * @return 反馈信息
      */
     @PostMapping("/login")
@@ -79,14 +75,16 @@ public class LoginController {
 
     /**
      * 修改密码
-     * @param user
      * @return 反馈信息
      */
+    @PostMapping("/update")
+    public int updateUser(){
+        return 1;
+    }
 
 
     /**
      * 退出登录
-     * @param request
      * @return 反馈信息
      */
     @PostMapping("/loginout")
