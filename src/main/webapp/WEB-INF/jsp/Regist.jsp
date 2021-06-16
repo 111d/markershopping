@@ -113,7 +113,7 @@
                   </tr>
                   <tr height="60">
                     <td>&nbsp;</td>
-                      <td><button type="button" id="regiest" class="log_btn" onclick="validate()" readonly="readonly">立即注册</button></td>
+                      <td><input type="button" id="regiest" class="log_btn" readonly="readonly" value="立即注册"></td>
                   </tr>
                 </table>
 <%--            </form>--%>
@@ -132,7 +132,7 @@
 
 </body>
 <script>
-    function validate(){
+    $(function(){
         $("#regiest").on("click",function (){
             var word1 = document.getElementById("password").value;
             var word2 = document.getElementById("twopassword").value;
@@ -161,6 +161,7 @@
             $.ajax({
                 type:"POST",
                 url:"${pageContext.request.contextPath}/user/register",
+                async:false,
                 data:{
                     username:username,
                     password:password,
@@ -174,17 +175,22 @@
                 success:function(data){
                     if (data == 1){
                         window.alert("注册成功");
-                        window.location.href="${pageContext.request.contextPath}/index/to?name=Index";
+                        window.setTimeout("setTimeout_href()",1000);
+                    //    location.href="${pageContext.request.contextPath}/index/to?name=Index";
                     }else if(data == -1 || data == 0){
                         window.alert("注册失败");
-                        window.location.href=this.url;
+                        location.href=this.url;
                     }else if(data == -2){
                         window.alert("用户名已存在，请重新输入");
                     }
                 }
             })
-            return false;
+             return false;
         })
+    })
+
+    function setTimeout_href(){
+        self.location.href="${pageContext.request.contextPath}/index/to?name=Index";
     }
 
     /*点击刷新验证码*/

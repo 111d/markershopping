@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequestMapping("/user")
@@ -22,8 +23,8 @@ public class LoginController {
      * @return 反馈信息
      */
     @PostMapping("/register")
-    public int registerUser(HttpServletRequest request){
-//        ModelAndView modelAndView = new ModelAndView();
+    public int registerUser(HttpServletRequest request) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String name = request.getParameter("name");

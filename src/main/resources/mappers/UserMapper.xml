@@ -12,7 +12,7 @@
     </select>
     <!--登录用户-->
     <select id="loginUser" resultType="com.example.demo.entity.User">
-        select * from user_information where username=#{username} and password = #{password}
+        select * from user_information where username=#{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
     </select>
     <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into user_information('username','password','name','type','idNumber','email','telephone')
