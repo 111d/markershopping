@@ -86,7 +86,7 @@
               </tr>
               <tr height="60">
               	<td>&nbsp;</td>
-                  <td><button type="button" id="login" class="log_btn" onclick="toLogin()">登录</button></td>
+                  <td><input type="button" id="login" class="log_btn" value="登录"></td>
               </tr>
             </table>
         </div>
@@ -103,7 +103,7 @@
 <!--End Footer End -->    
 <script type="text/javascript">
     //用户登录
-    function toLogin(){
+    $(function(){
          $("#login").on("click",function (){
             var username = $("#username").val();
             var password = $("#password").val();
@@ -130,17 +130,16 @@
                     console.log("data:"+data);
                     if(data == 1){
                         var url ="${pageContext.request.contextPath}/index/to?name=Index";
-                       // alert("登录成功，即将跳转");
-                        window.location.href=url;
+                        location.href=url;
                     }else if(data == -1) {
                         alert("登录失败，请重新登录");
-                        window.location.href=this.url;
+                        location.href=this.url;
                     }
                 }
             })
             return false;
         })
-    }
+    })
 </script>
 </body>
 <!--[if IE 6]>
