@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 
 @RestController
@@ -67,9 +68,13 @@ public class LoginController {
         String password = request.getParameter("password");
         User user1 = userService.loginUser(username,password);
         if (user1 == null){
+//            //创建session对象
+//            HttpSession session = request.getSession();
+//            //把用户数据保存在session域对象
+//            session.setAttribute("userName",username);
             return -1;//用户名或密码错误返回 -1
         }
-        request.getSession().setAttribute("user",user1);
+        request.getSession().setAttribute("user",user1); //把用户数据保存在session域对象
         return 1;//用户名密码正确返回 1
     }
 

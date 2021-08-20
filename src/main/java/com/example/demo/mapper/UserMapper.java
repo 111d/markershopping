@@ -22,4 +22,5 @@ public interface UserMapper {
     void registerUser(@Param("list") List<User> list);
     //修改用户密码
     void updateUserPassword(User user);
+
 }

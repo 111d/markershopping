@@ -12,10 +12,10 @@ import java.util.List;
 @Mapper
 @Repository
 public interface ProductMapper {
-
     //查询所有产品信息
     List<Product> findAll();
     //根据产品关键字查询记录
     Product findByProduct();
+
 
 }

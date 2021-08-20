@@ -18,13 +18,13 @@
         insert into user_information('username','password','name','type','idNumber','email','telephone')
         values
             (
-            #{user.userName,jdbcType=VARCHAR},
-            #{user.password,jdbcType=VARCHAR},
-            #{user.name,jdbcType=VARCHAR},
-            #{user.type,jdbcType=VARCHAR},
-            #{user.idNumber,jdbcType=VARCHAR},
-            #{user.email,jdbcType=VARCHAR},
-            #{user.telephone,jdbcType=VARCHAR}
+                #{user.userName,jdbcType=VARCHAR},
+                #{user.password,jdbcType=VARCHAR},
+                #{user.name,jdbcType=VARCHAR},
+                #{user.type,jdbcType=VARCHAR},
+                #{user.idNumber,jdbcType=VARCHAR},
+                #{user.email,jdbcType=VARCHAR},
+                #{user.telephone,jdbcType=VARCHAR}
             )
     </insert>
     <!--注册用户-->
